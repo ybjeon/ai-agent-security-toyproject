@@ -16,7 +16,7 @@
 
 
 ## System configuration
-- LLM model served by HTTP
+- LLM model served by Ollama
 
 ## Basic python framework
 - langchain

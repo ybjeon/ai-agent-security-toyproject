@@ -1,13 +1,15 @@
 from langserve import RemoteRunnable
 from langchain_core.messages import HumanMessage, AIMessage
+from langchain_ollama import ChatOllama
 from ollama import embeddings
 
 # Server configuration
-SERVER_URL = "http://localhost:8000/llm"
+OLLAMA_BASE_URL = "http://localhost:11434"
+MODEL = "mistral"
 MODEL_EMBEDDING = "nomic-embed-text"
 
 # Connect to remote LLM server
-llm = RemoteRunnable(SERVER_URL)
+llm = ChatOllama(model=MODEL, base_url=OLLAMA_BASE_URL)
 
 def single_turn(user_message: str) -> str:
     """Single turn: Send one message and receive a response."""
@@ -17,7 +19,7 @@ def single_turn(user_message: str) -> str:
 
 def multi_turn(assistant_messages: list[str]):
     """Multi turn: Maintain conversation history and chat."""
-    print(f"Chatbot started (Server: {SERVER_URL}) | Exit: 'quit' or 'exit'")
+    print(f"Chatbot started (Server: {OLLAMA_BASE_URL}) | Exit: 'quit' or 'exit'")
     history = []
 
     N = len(assistant_messages) if assistant_messages else int(1e5)  # Default to 2 turns if no messages provided
