@@ -17,7 +17,7 @@ def single_turn(user_message: str) -> str:
     return response.content
 
 
-def multi_turn(assistant_messages: list[str]):
+def multi_turn(assistant_messages: list[str]=None):
     """Multi turn: Maintain conversation history and chat."""
     print(f"Chatbot started (Server: {OLLAMA_BASE_URL}) | Exit: 'quit' or 'exit'")
     history = []
